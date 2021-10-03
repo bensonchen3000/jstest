@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Loan Calculate</title>
+    <style>
+        .output {font-weight: bold;}
+        #payment {text-decoration:underline;}
+        #graph {border: solid black 1px;}
+        this, td {vertical-align: top;
+    </style>
+
+</head>
+<body>
+<table>
+    <tr><th>Enter Loan Data:</th>
+        <td></td>
+        <th>Load Balance, Culmulative Equity, and Interest Payments</th>
+    </tr>
+    <tr>
+        <td>Amount of the load ($):</td>
+        <td><input id="amount" onchange="calculate();"</td>
+        <td rowspan=8>
+            <canvas id="graph" width="400" height="250"></canvas>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Annual Interest (%):
+        </td>
+        <td>
+            <input id="apr" onchange="calculate();">
+        </td>
+
+    </tr>
+    <tr>
+        <td>
+            Repayment period (years):
+        </td>
+        <td>
+            <input id="years" onchange="calculate();">
+        </td>
+
+    </tr>
+    <tr>
+        <td>
+            Zipcode (to find lenders):
+        </td>
+        <td>
+            <input id="zipcode" onchange="calculate();">
+        </td>
+
+    </tr>
+    <tr>
+        <th>
+           Approximate Payments:
+        </th>
+        <td>
+            <button onclick="calculate();">Calculate</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+           Monthly Payments:
+        </td>
+        <td>
+            $<span class="output" id="payment"></span>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Total Payment:
+        </td>
+        <td>$<span class="output" id="total"></span> </td>
+    </tr>
+    <tr>
+        <td>
+            Total interest:
+        </td>
+        <td>$<span class="output" id="totalinterest"></span></td>
+    </tr>
+    <tr>
+        <th>
+            Sponsors:
+        </th>
+        <td colspan=2>
+            Applyfor your loan with one of these fine lenders:
+            <div id="lenders"></div>
+        </td>
+    </tr>
+
+</table>
+<script>
+    function calculate(){
+        var amount = document.getElementById("amount");
+        var apr = document.getElementById("apr");
+        var years = document.getElementById("years");
+        var zipcode = document.getElementById("zipcode");
+        var payment = document.getElementById("payment");
+        var total = document.getElementById("total");
+        var totalinterest = document.getElementById("totalinterest");
+        var principal = parseFloat(amount.value);
+        var interest = parseFloat(apr.value) /100/12;
+        var payments = parseFloat(years.value)*12;
+        var x = Math.pow(1 + interest, payments);
+        var monthly = (principal * x * interest)/(x-1);
+        if (isFinite(monthly)) {
+            payment.innerHTML = monthly.toFixed(2);
+            total.innerHTML = (monthly*payments).toFixed(2);
+            totalinterest.innerHTML =((monthly * payments) - principal).toFixed(2);
+            save(amount.value, apr.value, years.value, zipcode.value);
+            try {
+                getLeners(amount.value, apr.value, years.value, zipcode.value);
+            }
+            catch(e){
+            chart(principal, interest, monthly, payments);
+        }
+        else {
+            payment.innerHTML="";
+            total.innerHTML="";
+            totalinterest.innerHTML="";
+            chart();
+        }
+    }
+
+    function save(amount, apr, years, zipcode){
+        if (window.localStorage){
+            localStorage.loan_amount = amount;
+            localStorage.loan_apr = apr;
+            localStorage.loan_years = years;
+            localStorage.loan_zipcode = zipcode;
+        }
+    }
+
+    window.onload = function() {
+        if (window.localStorage && localStorage.loan_amount) {
+            document.getElementById("amount").value = localStorage.loan_amount;
+            document.getElementById("apr").value = localStorage.apr;
+            document.getElementById("years").value = localStorage.years;
+            document.getElementById("zipcode").value = localStorage.zipcode;
+        }
+
+    };
+
+    function getLenders(amount, apr, years, zipcode) {
+        if (!windows.XMLHttpRequest) return;
+        var ad = document.getElementById("lenders");
+        if (!ad) return;
+    }
+    var f = function(x){
+        return x+1;
+    }
+    function factorial(n){
+        if (n<=1)
+            return 1;
+        return n*factorial(n-1);
+    }
+    if (n==1){
+
+    }
+    else if (n==2){
+
+    }
+    else {
+
+    }
+    switch(n){
+        case 1:
+
+        break;
+        case 2:
+        break;
+        default:
+        break;
+    }
+    function convert(x){
+        switch(typeof x){
+            case 'number':
+                return x.toString(16);
+            case 'string':
+                return '"' + x + '"';
+            default:
+                return String(x);
+        }
+    }
+    try{
+        var n = Number(prompt("please input a inter",""));
+        var f = factorial(n);
+        alert(n+"1 = " + f);
+    }
+    catch(e){
+        alert(ex);
+    }
+    var empty ={};
+    var point = {x:o, y:0};
+    var point2 ={x:point.x,y:point.y};
+    var book = {
+        "main title": "JavaScript",
+        'sub-title': "The Definitive Guide",
+        "for": "all audiences",
+        author: {
+        firstname:"David",
+        surname: "Flanagan"
+        }
+    };
+    var o = new Object();
+    var a = new Array();
+    var d = new Date();
+    var r = new RegExp("js");
+    var o1 = Object.create{x:1, y:2};
+
+    var addr = "";
+    for(i=0;i<4;i++){
+        addr += customer["address" + i] + '\n';
+    }
+
+    function getvalue(portfolio){
+        var total = 0.0;
+        for(stock in portfolio) {
+            var shares = portfolio[stock];
+            var price = getquote(stock);
+            total += shares * price;
+        }
+        return total;
+    }
+
+    var unitcircle = {r:1};
+    var c = inherit(unitcircle);
+    c.x = 1; c.y = 1;
+    c.r = 2;
+    unitcircle.r;
+
+    function restrict(o, p){
+        for (prop in o){
+            if(! (prop in p)) delete o[prop];
+        }
+        return o;
+    }
+
+    o = {x:1, y:{z:[false,null,""]}};
+    s = JSON.stringify(o);
+    p = JSON.parse(s);
+
+    var data = [1,2,3,4,5];
+    var sum=0;
+    data.foreach(function(value){ sum += value; });
+    sum
+    data.foreach(function(v,i,a){ a[i] = v+1;});
+
+    a =[1,2,3];
+    b = a.map(function(x) { return x*x; });
+
+    a =[5,4,3,2,1];
+    smallvalues = a.filter(function(x){ return x<3});
+    everyother = a.filter(function(x,i){ return i%2==0 });
+
+    function distance(x1,y1, x2,y2) {
+        for(var p in o){
+            console.log(p+": " + o[p
+        }
+    }
+</script>
+
+</body>
+</html>
